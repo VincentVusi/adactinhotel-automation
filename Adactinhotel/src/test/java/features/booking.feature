@@ -11,6 +11,7 @@ Feature: Hotel Booking
     When user enters booking details "<firstName>", "<lastName>", "<address>", "<creditCardNumber>", "<creditCardType>", "<expiryMonth>", "<expiryYear>", "<cvvNumber>"
     Then user is on confirmation page
     Then user checks the order number
+    Then user logs out
 
     Examples:
       | username | password | location | hotels | roomType | numberOfRooms | checkInDate | checkOutDate | adultsPerRoom | childrenPerRoom | firstName | lastName | address | creditCardNumber | creditCardType | expiryMonth | expiryYear | cvvNumber |

@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class SearchHotelPage {
     @FindBy(name = "location")
@@ -38,15 +39,22 @@ public class SearchHotelPage {
     }
 
     public void searchHotel(String location, String hotels, String roomType, String numberOfRooms, String checkInDate, String checkOutDate, String adultsPerRoom, String childrenPerRoom) {
-        this.location.sendKeys(location);
-        this.hotels.sendKeys(hotels);
-        this.roomType.sendKeys(roomType);
-        this.numberOfRooms.sendKeys(numberOfRooms);
+        selectByText(this.location,location);
+        selectByText(this.hotels,hotels);
+        selectByText(this.roomType,roomType);
+        selectByValue(this.numberOfRooms,numberOfRooms);
         this.checkInDate.sendKeys(checkInDate);
         this.checkOutDate.sendKeys(checkOutDate);
-        this.adultsPerRoom.sendKeys(adultsPerRoom);
-        this.childrenPerRoom.sendKeys(childrenPerRoom);
+        selectByValue(this.adultsPerRoom,adultsPerRoom);
+        selectByValue(this.childrenPerRoom,childrenPerRoom);
         searchButton.click();
+    }
+    private void selectByText(WebElement element , String value){
+        new Select(element).selectByVisibleText(value);
+    }
+
+    private void selectByValue(WebElement element , String value){
+        new Select(element).selectByValue(value);
     }
 }
 

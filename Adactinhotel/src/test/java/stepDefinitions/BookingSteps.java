@@ -22,6 +22,8 @@ public class BookingSteps {
     @Given("user is on login page")
     public void user_is_on_login_page() {
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         driver.get("https://adactinhotelapp.com/");
         loginPage = new LoginPage(driver);
     }
@@ -71,7 +73,10 @@ public class BookingSteps {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         String orderNumber = confirmationPage.getOrderNumber();
         Assert.assertNotNull(orderNumber);
+
+    }
+    @Then("user logs out")
+    public void user_logs_out(){
         driver.quit();
     }
-
 }
