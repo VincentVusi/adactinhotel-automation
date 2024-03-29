@@ -2,15 +2,11 @@ Feature: Hotel Booking
 
   Scenario Outline: Successful Booking of a Hotel
     Given user is on login page
-    When user enters valid username "<username>" and password "<password>"
-    Then user is on search hotel page
-    When user enters hotel search details "<location>", "<hotels>", "<roomType>", "<numberOfRooms>", "<checkInDate>", "<checkOutDate>", "<adultsPerRoom>", "<childrenPerRoom>"
-    Then user is on select hotel page
-    When user selects a hotel
-    Then user is on book hotel page
-    When user enters booking details "<firstName>", "<lastName>", "<address>", "<creditCardNumber>", "<creditCardType>", "<expiryMonth>", "<expiryYear>", "<cvvNumber>"
-    Then user is on confirmation page
-    Then user checks the order number
+    When user logs in "<username>","<password>"
+    And user searches for a hotel "<location>", "<hotels>", "<roomType>", "<numberOfRooms>", "<checkInDate>", "<checkOutDate>", "<adultsPerRoom>", "<childrenPerRoom>"
+    And user selects a hotel
+    And user enters booking details "<firstName>", "<lastName>", "<address>", "<creditCardNumber>", "<creditCardType>", "<expiryMonth>", "<expiryYear>", "<cvvNumber>"
+    And user checks the order number
     Then user logs out
 
     Examples:

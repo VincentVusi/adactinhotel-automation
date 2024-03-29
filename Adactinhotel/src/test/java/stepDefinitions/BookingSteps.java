@@ -28,48 +28,32 @@ public class BookingSteps {
         loginPage = new LoginPage(driver);
     }
 
-    @When("user enters valid username {string} and password {string}")
-    public void user_enters_valid_username_and_password(String username, String password) {
+    @When("user logs in {string},{string}")
+    public void user_logs_in(String username, String password) {
         loginPage.login(username, password);
     }
 
-    @Then("user is on search hotel page")
-    public void user_should_be_redirected_to_homepage() {
+    @And("user searches for a hotel {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}")
+    public void user_searches_for_a_hotel(String location, String hotels, String roomType, String numberOfRooms, String checkInDate, String checkOutDate, String adultsPerRoom, String childrenPerRoom) {
         searchHotelPage = new SearchHotelPage(driver);
-    }
-
-    @When("user enters hotel search details {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}")
-    public void user_enters_hotel_search_details(String location, String hotels, String roomType, String numberOfRooms, String checkInDate, String checkOutDate, String adultsPerRoom, String childrenPerRoom) {
         searchHotelPage.searchHotel(location, hotels, roomType, numberOfRooms, checkInDate, checkOutDate, adultsPerRoom, childrenPerRoom);
     }
 
-    @Then("user is on select hotel page")
-    public void user_is_on_select_hotel_page() {
-        selectHotelPage = new SelectHotelPage(driver);
-    }
-
-    @When("user selects a hotel")
+    @And("user selects a hotel")
     public void user_selects_a_hotel() {
+        selectHotelPage = new SelectHotelPage(driver);
         selectHotelPage.selectHotel();
     }
 
-    @Then("user is on book hotel page")
-    public void user_is_on_book_hotel_page() {
-        bookHotelPage = new BookHotelPage(driver);
-    }
-
-    @When("user enters booking details {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}")
+    @And("user enters booking details {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}")
     public void user_enters_booking_details(String firstName, String lastName, String address, String creditCardNumber, String creditCardType, String expiryMonth, String expiryYear, String cvvNumber) {
+        bookHotelPage = new BookHotelPage(driver);
         bookHotelPage.bookHotel(firstName, lastName, address, creditCardNumber, creditCardType, expiryMonth, expiryYear, cvvNumber);
     }
 
-    @Then("user is on confirmation page")
-    public void user_is_on_confirmation_page() {
-        confirmationPage = new ConfirmationPage(driver);
-    }
-
-    @Then("user checks the order number")
+    @And("user checks the order number")
     public void user_checks_the_order_number() {
+        confirmationPage = new ConfirmationPage(driver);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         String orderNumber = confirmationPage.getOrderNumber();
         Assert.assertNotNull(orderNumber);
