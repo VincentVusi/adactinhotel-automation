@@ -9,11 +9,18 @@ public class ConfirmationPage {
     @FindBy(id = "order_no")
     WebElement orderNumber;
 
+    @FindBy(id = "logout")
+    WebElement logoutButton;
+
     public ConfirmationPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
 
     public String getOrderNumber() {
         return orderNumber.getAttribute("value");
+    }
+
+    public void logout(){
+        logoutButton.click();
     }
 }

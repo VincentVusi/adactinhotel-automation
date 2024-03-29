@@ -61,6 +61,7 @@ public class BookingSteps {
     }
     @Then("user logs out")
     public void user_logs_out(){
+        confirmationPage.logout();
         driver.quit();
     }
 }
