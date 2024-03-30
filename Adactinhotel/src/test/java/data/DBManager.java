@@ -10,7 +10,6 @@ public class DBManager {
 
     public DBManager() throws SQLException {
         this.connection= DriverManager.getConnection("jdbc:sqlite:src/test/java/data/testdata_db.db");
-        System.out.println("Opened database successfully");
     }
 
     public void createDatabase(){
@@ -43,7 +42,6 @@ public class DBManager {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
         }
-        System.out.println("Table created successfully");
     }
     public void insertData(String table, String[] data) throws SQLException {
         String numOfColumns = "";
@@ -86,6 +84,6 @@ public class DBManager {
         new DBManager().insertData("testdata",array);
         //new DBManager().createDatabase();
         //List<List<String>> data = new DBManager().selectData("testdata","1");
-        //System.out.println("Done");
+        // "Done");
     }
 }
